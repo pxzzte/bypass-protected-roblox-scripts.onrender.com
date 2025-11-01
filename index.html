@@ -1,39 +1,213 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
-  <title>🔓 Roblox Script Bypass</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🔓 ROBLOX BYPASS PRO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto+Mono&display=swap" rel="stylesheet">
   <style>
-    body { background: #0a0a0a; color: #0f0; font-family: 'Courier New'; padding: 20px; margin: 0; text-align: center; }
-    h1 { color: #0f0; text-shadow: 0 0 10px #0f0; }
-    pre { background: #111; padding: 20px; border: 2px solid #0f0; border-radius: 12px; white-space: pre-wrap; max-height: 70vh; overflow: auto; margin: 20px auto; width: 90%; box-shadow: 0 0 15px rgba(0,255,0,0.3); }
-    button { padding: 15px 30px; background: #0f0; color: #000; border: none; border-radius: 50px; font-weight: bold; font-size: 18px; cursor: pointer; box-shadow: 0 0 20px #0f0; transition: 0.3s; }
-    button:hover { background: #0c0; transform: scale(1.1); }
-    .input { padding: 12px; width: 70%; border: 2px solid #0f0; background: #000; color: #0f0; border-radius: 8px; font-size: 16px; }
+    :root {
+      --bg: #0a0a0a;
+      --primary: #00ff88;
+      --secondary: #00cc66;
+      --text: #e0ffe0;
+      --border: #00ff88;
+      --shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Roboto Mono', monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+    .container {
+      width: 100%;
+      max-width: 900px;
+      margin: 20px auto;
+      text-align: center;
+    }
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.8rem;
+      color: var(--primary);
+      text-shadow: var(--shadow);
+      margin-bottom: 10px;
+      animation: pulse 2s infinite;
+    }
+    .subtitle {
+      color: #88ffaa;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+    .input-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    input[type="text"] {
+      flex: 1;
+      min-width: 280px;
+      padding: 14px 18px;
+      background: #111;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      color: var(--primary);
+      font-size: 1rem;
+      outline: none;
+      transition: all 0.3s;
+      box-shadow: var(--shadow);
+    }
+    input[type="text"]:focus {
+      border-color: var(--secondary);
+      box-shadow: 0 0 25px rgba(0, 255, 136, 0.8);
+    }
+    button {
+      padding: 14px 30px;
+      background: var(--primary);
+      color: #000;
+      border: none;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: var(--shadow);
+      min-width: 140px;
+    }
+    button:hover {
+      background: var(--secondary);
+      transform: translateY(-3px);
+      box-shadow: 0 0 30px rgba(0, 255, 136, 0.9);
+    }
+    .output {
+      background: #111;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 20px;
+      min-height: 200px;
+      text-align: left;
+      position: relative;
+      box-shadow: var(--shadow);
+      overflow: auto;
+      max-height: 60vh;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      color: var(--text);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      background: var(--primary);
+      color: #000;
+    }
+    .status {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #ff0;
+      min-height: 24px;
+    }
+    footer {
+      margin-top: auto;
+      padding: 20px;
+      color: #666;
+      font-size: 0.9rem;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .input-group { flex-direction: column; }
+      input[type="text"], button { width: 100%; }
+    }
   </style>
 </head>
 <body>
-  <h1>🔓 ROBLOX SCRIPT BYPASS</h1>
-  <input type="text" class="input" id="idInput" placeholder="Nhập ID (ví dụ: 68628fd8...)" value="68628fd825ffaab7dc9a853c63e73f23">
-  <button onclick="load()">LẤY SCRIPT</button>
-  <pre id="script">Nhấn nút để lấy script...</pre>
-  <button onclick="copy()" id="copyBtn" style="display:none">📋 COPY TOÀN BỘ</button>
+  <div class="container">
+    <h1>🔓 ROBLOX BYPASS PRO</h1>
+    <p class="subtitle">Bỏ mật khẩu – Lấy script thật – Copy 1 click</p>
+
+    <div class="input-group">
+      <input type="text" id="urlInput" placeholder="Nhập ID hoặc link (ví dụ: 68628fd8... hoặc access/0507...)" />
+      <button onclick="fetchScript()">🚀 LẤY SCRIPT</button>
+    </div>
+
+    <div class="output" id="output">
+      <pre id="scriptContent">Nhấn "LẤY SCRIPT" để bắt đầu...</pre>
+      <button class="copy-btn" id="copyBtn" onclick="copyScript()" style="display:none">📋 COPY</button>
+    </div>
+
+    <div class="status" id="status"></div>
+  </div>
+
+  <footer>© 2025 Roblox Bypass Pro – Made with 💚</footer>
 
   <script>
-    function load() {
-      const id = document.getElementById('idInput').value.trim() || '68628fd825ffaab7dc9a853c63e73f23';
+    const defaultId = "68628fd825ffaab7dc9a853c63e73f23";
+    document.getElementById('urlInput').value = defaultId;
+
+    function getIdFromInput() {
+      let input = document.getElementById('urlInput').value.trim();
+      if (!input) return defaultId;
+      // Trích xuất ID từ link đầy đủ
+      try {
+        const url = new URL(input);
+        return url.pathname.slice(1) || defaultId;
+      } catch {
+        return input || defaultId;
+      }
+    }
+
+    async function fetchScript() {
+      const id = getIdFromInput();
       const api = `/.netlify/functions/proxy/${id}`;
-      fetch(api).then(r => r.text()).then(t => {
-        document.getElementById('script').textContent = t;
-        document.getElementById('copyBtn').style.display = 'block';
-        window.script = t;
-      });
+      const status = document.getElementById('status');
+      const output = document.getElementById('scriptContent');
+      const copyBtn = document.getElementById('copyBtn');
+
+      status.textContent = "⏳ Đang lấy script...";
+      output.textContent = "Loading...";
+      copyBtn.style.display = "none";
+
+      try {
+        const res = await fetch(api);
+        if (!res.ok) throw new Error(`Lỗi ${res.status}`);
+        const text = await res.text();
+
+        output.textContent = text;
+        window.currentScript = text;
+        copyBtn.style.display = "block";
+        status.innerHTML = "✅ <strong>THÀNH CÔNG!</strong> Script đã sẵn sàng.";
+      } catch (err) {
+        output.textContent = "❌ Lỗi: " + err.message;
+        status.innerHTML = "🔴 Không thể lấy script. Kiểm tra ID hoặc thử lại.";
+      }
     }
-    function copy() {
-      navigator.clipboard.writeText(window.script);
-      alert('✅ ĐÃ COPY SCRIPT!');
+
+    function copyScript() {
+      navigator.clipboard.writeText(window.currentScript || "");
+      alert("✅ ĐÃ COPY TOÀN BỘ SCRIPT!");
     }
-    // Tự động load khi mở
-    window.onload = load;
+
+    // Tự động load khi mở trang
+    window.addEventListener('load', fetchScript);
   </script>
 </body>
 </html>
