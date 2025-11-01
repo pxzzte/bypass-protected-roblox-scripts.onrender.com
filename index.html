@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Roblox Script Bypass</title>
+  <style>
+    body { background: #000; color: #0f0; font-family: 'Courier New'; padding: 20px; margin: 0; }
+    pre { background: #111; padding: 20px; border: 1px solid #0f0; border-radius: 8px; white-space: pre-wrap; max-height: 80vh; overflow: auto; }
+    button { position: fixed; top: 10px; right: 10px; padding: 12px 20px; background: #0f0; color: #000; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; z-index: 9999; }
+    .status { color: yellow; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h2><span class="status">Đang lấy script...</span></h2>
+  <pre id="script">Loading...</pre>
+  <button onclick="copy()" id="btn" style="display:none">COPY SCRIPT</button>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id') || '68628fd825ffaab7dc9a853c63e73f23';
+    const api = `/.netlify/functions/proxy/${id}`;
+
+    fetch(api)
+      .then(r => r.text())
+      .then(text => {
+        document.getElementById('script').textContent = text;
+        document.querySelector('.status').textContent = 'THÀNH CÔNG!';
+        document.getElementById('btn').style.display = 'block';
+        window.script = text;
+      })
+      .catch(() => {
+        document.querySelector('.status').textContent = 'LỖI!';
+      });
+
+    function copy() {
+      navigator.clipboard.writeText(window.script);
+      alert('ĐÃ COPY!');
+    }
+  </script>
+</body>
+</html>
