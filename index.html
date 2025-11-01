@@ -142,15 +142,15 @@
 <body>
   <div class="container">
     <h1>🔓 ROBLOX BYPASS PRO</h1>
-    <p class="subtitle">Bỏ mật khẩu – Lấy script thật – Copy 1 click</p>
+    <p class="subtitle">Nhập ID hoặc link → Lấy script thật → Copy 1 click</p>
 
     <div class="input-group">
-      <input type="text" id="urlInput" placeholder="Nhập ID hoặc link (ví dụ: 68628fd8... hoặc access/0507...)" />
+      <input type="text" id="urlInput" placeholder="Ví dụ: 68628fd8... hoặc https://protected-roblox-scripts.onrender.com/access/..." />
       <button onclick="fetchScript()">🚀 LẤY SCRIPT</button>
     </div>
 
     <div class="output" id="output">
-      <pre id="scriptContent">Nhấn "LẤY SCRIPT" để bắt đầu...</pre>
+      <pre id="scriptContent">Nhập ID hoặc link → nhấn "LẤY SCRIPT"...</pre>
       <button class="copy-btn" id="copyBtn" onclick="copyScript()" style="display:none">📋 COPY</button>
     </div>
 
@@ -160,44 +160,58 @@
   <footer>© 2025 Roblox Bypass Pro – Made with 💚</footer>
 
   <script>
-    const defaultId = "68628fd825ffaab7dc9a853c63e73f23";
-    document.getElementById('urlInput').value = defaultId;
+    // === TỰ ĐỘNG NHẬN DIỆN ID TỪ LINK HOẶC ID TRỰC TIẾP ===
+    function extractId(input) {
+      if (!input) return null;
+      input = input.trim();
 
-    function getIdFromInput() {
-      let input = document.getElementById('urlInput').value.trim();
-      if (!input) return defaultId;
-      // Trích xuất ID từ link đầy đủ
-      try {
-        const url = new URL(input);
-        return url.pathname.slice(1) || defaultId;
-      } catch {
-        return input || defaultId;
+      // Nếu là link đầy đủ → trích xuất path
+      if (input.includes('http')) {
+        try {
+          const url = new URL(input);
+          return url.pathname.replace(/^\//, ''); // bỏ dấu / đầu
+        } catch {
+          return null;
+        }
       }
+
+      // Nếu là ID trực tiếp → trả về luôn
+      return input;
     }
 
+    // === LẤY SCRIPT ===
     async function fetchScript() {
-      const id = getIdFromInput();
-      const api = `/.netlify/functions/proxy/${id}`;
+      const rawInput = document.getElementById('urlInput').value;
+      const id = extractId(rawInput);
+
       const status = document.getElementById('status');
       const output = document.getElementById('scriptContent');
       const copyBtn = document.getElementById('copyBtn');
 
-      status.textContent = "⏳ Đang lấy script...";
+      if (!id) {
+        status.innerHTML = "🔴 Nhập ID hoặc link hợp lệ!";
+        output.textContent = "Ví dụ: 68628fd8... hoặc access/0507...";
+        copyBtn.style.display = "none";
+        return;
+      }
+
+      const api = `/.netlify/functions/proxy/${id}`;
+      status.innerHTML = "⏳ Đang lấy script từ: <code>" + id + "</code>...";
       output.textContent = "Loading...";
       copyBtn.style.display = "none";
 
       try {
         const res = await fetch(api);
-        if (!res.ok) throw new Error(`Lỗi ${res.status}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const text = await res.text();
 
         output.textContent = text;
         window.currentScript = text;
         copyBtn.style.display = "block";
-        status.innerHTML = "✅ <strong>THÀNH CÔNG!</strong> Script đã sẵn sàng.";
+        status.innerHTML = `✅ <strong>THÀNH CÔNG!</strong> Đã lấy từ: <code>${id}</code>`;
       } catch (err) {
-        output.textContent = "❌ Lỗi: " + err.message;
-        status.innerHTML = "🔴 Không thể lấy script. Kiểm tra ID hoặc thử lại.";
+        output.textContent = "Không lấy được script.";
+        status.innerHTML = `🔴 Lỗi: ${err.message}. Kiểm tra ID/link!`;
       }
     }
 
@@ -206,8 +220,20 @@
       alert("✅ ĐÃ COPY TOÀN BỘ SCRIPT!");
     }
 
-    // Tự động load khi mở trang
-    window.addEventListener('load', fetchScript);
+    // === NHẤN ENTER TRONG TEXTBOX → TỰ ĐỘNG LẤY ===
+    document.getElementById('urlInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') fetchScript();
+    });
+
+    // === TỰ ĐỘNG LOAD KHI MỞ TRANG (nếu có ?id= trong URL) ===
+    window.addEventListener('load', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlId = urlParams.get('id');
+      if (urlId) {
+        document.getElementById('urlInput').value = urlId;
+        fetchScript();
+      }
+    });
   </script>
 </body>
 </html>
