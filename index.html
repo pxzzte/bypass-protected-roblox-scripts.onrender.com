@@ -116,47 +116,47 @@
 
   <script>
     // === NHẬN DIỆN ID ===
-// === GIẢI MÃ ASCII (\8, \9, \10, \13, \108, tab, space, ký tự lạ...) ===
-function deobfuscateAscii() {
-  const script = window.currentScript || "";
-  const deobfOutput = document.getElementById('deobfOutput');
-  const deobfContent = document.getElementById('deobfContent');
-  const copyDeobfBtn = document.getElementById('copyDeobfBtn');
-  const status = document.getElementById('status');
-
-  // Tìm tất cả chuỗi loadstring("...")
-  const loadstringRegex = /loadstring\("([^"]*)"\)/g;
-  let hasMatch = false;
-  let decodedScript = script;
-
-  decodedScript = script.replace(loadstringRegex, (match, encoded) => {
-    hasMatch = true;
-    try {
-      // Cách 1: Dùng eval để giải mã chính xác \8, \9, \10, \13, tab, space...
-      const decoded = eval(`"${encoded}"`);
-      return `loadstring("${decoded}")`;
-    } catch (e) {
-      // Cách 2: Nếu eval lỗi → dùng parse octal thủ công
-      const manual = encoded.replace(/\\(\d{1,3})/g, (m, code) => {
-        const num = parseInt(code, 8);
-        return num >= 32 && num <= 126 ? String.fromCharCode(num) : m;
+    // === GIẢI MÃ ASCII (\8, \9, \10, \13, \108, tab, space, ký tự lạ...) ===
+    function deobfuscateAscii() {
+      const script = window.currentScript || "";
+      const deobfOutput = document.getElementById('deobfOutput');
+      const deobfContent = document.getElementById('deobfContent');
+      const copyDeobfBtn = document.getElementById('copyDeobfBtn');
+      const status = document.getElementById('status');
+    
+      // Tìm tất cả chuỗi loadstring("...")
+      const loadstringRegex = /loadstring\("([^"]*)"\)/g;
+      let hasMatch = false;
+      let decodedScript = script;
+    
+      decodedScript = script.replace(loadstringRegex, (match, encoded) => {
+        hasMatch = true;
+        try {
+          // Cách 1: Dùng eval để giải mã chính xác \8, \9, \10, \13, tab, space...
+          const decoded = eval(`"${encoded}"`);
+          return `loadstring("${decoded}")`;
+        } catch (e) {
+          // Cách 2: Nếu eval lỗi → dùng parse octal thủ công
+          const manual = encoded.replace(/\\(\d{1,3})/g, (m, code) => {
+            const num = parseInt(code, 8);
+            return num >= 32 && num <= 126 ? String.fromCharCode(num) : m;
+          });
+          return `loadstring("${manual}")`;
+        }
       });
-      return `loadstring("${manual}")`;
+    
+      if (!hasMatch) {
+        deobfContent.textContent = "Không tìm thấy loadstring để giải mã.";
+        copyDeobfBtn.style.display = "none";
+      } else {
+        deobfContent.textContent = decodedScript;
+        window.deobfScript = decodedScript;
+        copyDeobfBtn.style.display = "block";
+        status.innerHTML = "⚡ ĐÃ GIẢI MÃ ASCII HOÀN HẢO!";
+      }
+    
+      deobfOutput.style.display = "block";
     }
-  });
-
-  if (!hasMatch) {
-    deobfContent.textContent = "Không tìm thấy loadstring để giải mã.";
-    copyDeobfBtn.style.display = "none";
-  } else {
-    deobfContent.textContent = decodedScript;
-    window.deobfScript = decodedScript;
-    copyDeobfBtn.style.display = "block";
-    status.innerHTML = "⚡ ĐÃ GIẢI MÃ ASCII HOÀN HẢO!";
-  }
-
-  deobfOutput.style.display = "block";
-}
     });
   </script>
 </body>
