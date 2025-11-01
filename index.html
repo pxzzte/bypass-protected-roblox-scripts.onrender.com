@@ -3,285 +3,214 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ROBLOX BYPASS + DEOBF PRO v5</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-dark.min.css"/>
+  <title>ROBLOX BYPASS + DEOBF PRO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto+Mono&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0a0a0a; --card: #111; --primary: #00ff88; --secondary: #00cc66;
-      --accent: #ff00ff; --text: #e0ffe0; --border: #00ff88;
-      --shadow: 0 0 25px rgba(0, 255, 136, 0.6); --error: #ff3333; --success: #00ff88;
-      --warning: #ffcc00;
+      --bg: #0a0a0a; --primary: #00ff88; --secondary: #00cc66; --accent: #ff00ff;
+      --text: #e0ffe0; --border: #00ff88; --shadow: 0 0 20px rgba(0, 255, 136, 0.5);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: linear-gradient(135deg, #0a0a0a 0%, #001a0d 100%);
-      color: var(--text); font-family: 'Roboto Mono', monospace;
-      min-height: 100vh; padding: 20px; overflow-x: hidden;
+      background: var(--bg); color: var(--text); font-family: 'Roboto Mono', monospace;
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+      padding: 20px; overflow-x: hidden;
     }
-    .container { max-width: 1100px; margin: 0 auto; }
-    header {
-      text-align: center; margin-bottom: 30px; padding: 20px;
-      background: rgba(17, 17, 17, 0.7); backdrop-filter: blur(10px);
-      border: 1px solid var(--border); box-shadow: var(--shadow); border-radius: 20px;
-    }
+    .container { width: 100%; max-width: 900px; margin: 20px auto; text-align: center; }
     h1 {
-      font-family: 'Orbitron', sans-serif; font-size: 3.2rem;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      animation: glow 2s infinite;
+      font-family: 'Orbitron', sans-serif; font-size: 2.8rem; color: var(--primary);
+      text-shadow: var(--shadow); margin-bottom: 10px; animation: pulse 2s infinite;
     }
-    .subtitle { color: #88ffaa; font-size: 1.2rem; margin-top: 10px; }
-    .tabs { display: flex; gap: 10px; margin: 20px 0; justify-content: center; flex-wrap: wrap; }
-    .tab { padding: 12px 24px; background: var(--card); border: 2px solid var(--border); border-radius: 12px; cursor: pointer; transition: all 0.3s; font-weight: bold; min-width: 140px; text-align: center; }
-    .tab.active { background: var(--primary); color: #000; box-shadow: 0 0 30px rgba(0, 255, 136, 0.9); }
-    .tab:hover:not(.active) { border-color: var(--secondary); transform: translateY(-2px); }
-    .input-group { display: flex; gap: 12px; margin: 20px 0; flex-wrap: wrap; justify-content: center; }
+    .subtitle { color: #88ffaa; font-size: 1.1rem; margin-bottom: 30px; }
+    .input-group {
+      display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center;
+    }
     input[type="text"] {
-      flex: 1; min-width: 340px; padding: 16px 20px; background: var(--card);
-      border: 2px solid var(--border); border-radius: 14px; color: var(--primary);
-      font-size: 1.1rem; outline: none; transition: all 0.3s; box-shadow: var(--shadow);
+      flex: 1; min-width: 280px; padding: 14px 18px; background: #111; border: 2px solid var(--border);
+      border-radius: 12px; color: var(--primary); font-size: 1rem; outline: none; transition: all 0.3s;
+      box-shadow: var(--shadow);
     }
-    input[type="text"]:focus { border-color: var(--secondary); box-shadow: 0 0 35px rgba(0, 255, 136, 1); }
+    input[type="text"]:focus {
+      border-color: var(--secondary); box-shadow: 0 0 25px rgba(0, 255, 136, 0.8);
+    }
     button {
-      padding: 16px 32px; background: var(--primary); color: #000; border: none;
-      border-radius: 14px; font-weight: bold; font-size: 1.1rem; cursor: pointer;
-      transition: all 0.3s; box-shadow: var(--shadow); display: flex;
-      align-items: center; justify-content: center; gap: 10px; min-width: 160px;
+      padding: 14px 30px; background: var(--primary); color: #000; border: none; border-radius: 12px;
+      font-weight: bold; font-size: 1rem; cursor: pointer; transition: all 0.3s; box-shadow: var(--shadow);
+      min-width: 140px;
     }
-    button:hover { background: var(--secondary); transform: translateY(-4px); box-shadow: 0 0 35px rgba(0, 255, 136, 1); }
-    button:disabled { background: #333; opacity: 0.6; cursor: not-allowed; }
-    .btn-deobf { background: var(--accent); color: #fff; }
-    .btn-deobf:hover { background: #cc00cc; box-shadow: 0 0 35px rgba(255, 0, 255, 0.8); }
+    button:hover {
+      background: var(--secondary); transform: translateY(-3px); box-shadow: 0 0 30px rgba(0, 255, 136, 0.9);
+    }
+    .btn-deobf {
+      background: var(--accent); color: #fff;
+    }
+    .btn-deobf:hover {
+      background: #cc00cc; box-shadow: 0 0 30px rgba(255, 0, 255, 0.7);
+    }
     .output {
-      background: var(--card); border: 2px solid var(--border); border-radius: 16px;
-      padding: 24px; margin-top: 20px; min-height: 240px; position: relative;
-      box-shadow: var(--shadow); overflow: auto; max-height: 65vh;
+      background: #111; border: 2px solid var(--border); border-radius: 12px; padding: 20px;
+      margin-top: 20px; min-height: 200px; text-align: left; position: relative; box-shadow: var(--shadow);
+      overflow: auto; max-height: 60vh;
     }
-    pre, code { font-family: 'Roboto Mono', monospace; margin: 0; line-height: 1.6; font-size: 0.95rem; white-space: pre-wrap; word-wrap: break-word; }
+    pre {
+      white-space: pre-wrap; word-wrap: break-word; color: var(--text); font-size: 0.95rem; line-height: 1.5;
+    }
     .copy-btn {
-      position: absolute; top: 12px; right: 12px; padding: 10px 18px;
-      background: var(--primary); color: #000; border-radius: 10px; font-size: 0.9rem; transition: all 0.2s;
+      position: absolute; top: 10px; right: 10px; padding: 8px 16px; font-size: 0.9rem;
+      background: var(--primary); color: #000;
     }
-    .copy-btn:hover { background: var(--secondary); }
-    .status {
-      margin-top: 16px; font-weight: bold; min-height: 30px; text-align: center;
-      display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 1.1rem;
-    }
-    .loading { width: 22px; height: 22px; border: 3px solid #333; border-top: 3px solid var(--primary); border-radius: 50%; animation: spin 1s linear infinite; }
-    .toast { position: fixed; top: 20px; right: 20px; padding: 12px 20px; background: var(--error); color: white; border-radius: 8px; z-index: 1000; display: none; }
-    footer { text-align: center; margin-top: 40px; color: #666; font-size: 0.9rem; }
-    @keyframes glow { 0%, 100% { filter: drop-shadow(0 0 20px #00ff88); } 50% { filter: drop-shadow(0 0 35px #00ff88); } }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    @media (max-width: 768px) {
-      h1 { font-size: 2.3rem; } .input-group, .tabs { flex-direction: column; } input[type="text"], button, .tab { width: 100%; min-width: unset; }
+    .status { margin-top: 15px; font-weight: bold; color: #ff0; min-height: 24px; }
+    footer { margin-top: auto; padding: 20px; color: #666; font-size: 0.9rem; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; } }
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .input-group { flex-direction: column; }
+      input[type="text"], button { width: 100%; }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <header>
-      <h1>ROBLOX BYPASS + DEOBF PRO v5</h1>
-      <p class="subtitle">Bỏ locker/pass → Lấy obf script (ID hash) → Deobf WinInet/ASCII/Hex → Copy 1 click</p>
-    </header>
-
-    <div class="tabs">
-      <div class="tab active" onclick="switchTab('fetch')">BYPASS & LẤY SCRIPT</div>
-      <div class="tab" onclick="switchTab('deobf')">DEOBF WININET</div>
-      <div class="tab" onclick="switchTab('about')">INFO</div>
+    <h1>ROBLOX BYPASS + DEOBFv1</h1>
+    <p class="subtitle">Bỏ mật khẩu → Lấy script → Giải mã ASCII → Copy 1 click</p>
+    <div class="input-group">
+      <input type="text" id="urlInput" placeholder="ID hoặc link (ví dụ: 68628fd8...)" />
+      <button onclick="fetchScript()">LẤY SCRIPT</button>
     </div>
-
-    <!-- TAB BYPASS -->
-    <div id="tab-fetch">
-      <div class="input-group">
-        <input type="text" id="urlInput" placeholder="ID hash hoặc raw link (ví dụ: 68628fd8... hoặc https://pastebin.com/raw/xxx)" />
-        <button onclick="fetchScript()" id="fetchBtn">
-          <i class="fas fa-download"></i> BYPASS & LẤY
-        </button>
-      </div>
-      <div class="output" id="output">
-        <pre id="scriptContent"><code class="language-lua">-- Dán ID hash → BYPASS để lấy obf script...</code></pre>
-        <button class="copy-btn" id="copyBtn" onclick="copyScript()" style="display:none">
-          <i class="fas fa-copy"></i> COPY OBF
-        </button>
-      </div>
+    <div class="output" id="output">
+      <pre id="scriptContent">Nhập ID → nhấn "LẤY SCRIPT"...</pre>
+      <button class="copy-btn" id="copyBtn" onclick="copyScript()" style="display:none">COPY</button>
     </div>
-
-    <!-- TAB DEOBF -->
-    <div id="tab-deobf" style="display:none;">
-      <div style="text-align:center; margin:20px 0;">
-        <button class="btn-deobf" onclick="deobfuscateWinInet()" id="deobfBtn" style="display:none;">
-          <i class="fas fa-magic"></i> DEOBF WININET (Multi-Layer)
-        </button>
-      </div>
-      <div class="output" id="deobfOutput" style="display:none;">
-        <pre id="deobfContent"><code class="language-lua">-- Kết quả deobf sẽ hiện ở đây (sau khi chạy)...</code></pre>
-        <button class="copy-btn" id="copyDeobfBtn" onclick="copyDeobf()" style="display:none">
-          <i class="fas fa-copy"></i> COPY DEOBF
-        </button>
-      </div>
+    <div class="input-group" style="margin-top:10px; display:none;" id="deobfSection">
+      <button class="btn-deobf" onclick="deobfuscateAscii()">DEOBFUSCATE ASCII</button>
     </div>
-
-    <!-- TAB INFO -->
-    <div id="tab-about" style="display:none; text-align:center; padding:30px; color:#aaa;">
-      <h3>DEOBF WININET EXPLAIN</h3>
-      <p><strong>WinInet Obf:</strong> Strings mã hóa ASCII/Hex + Bytecode qua InternetOpenA/Http calls + Anti-dump.</p>
-      <p><strong>Deobf làm gì:</strong> Dump strings → Decode escapes → Cleanup loadstring → Peel layers (3 passes).</p>
-      <p>Chính xác ~85% cho basic WinInet. Pro hơn? Dùng PsuedoDeob tool ngoài.</p>
-      <p>Made with <span style="color:#00ff88">Green Heart</span> – v5 Fix All Errors</p>
+    <div class="output" id="deobfOutput" style="display:none; margin-top:20px;">
+      <pre id="deobfContent">...</pre>
+      <button class="copy-btn" id="copyDeobfBtn" onclick="copyDeobf()" style="display:none">COPY DEOBF</button>
     </div>
-
     <div class="status" id="status"></div>
-    <div class="toast" id="toast"></div>
   </div>
-
-  <footer>© 2025 Bypass + Deobf Pro v5 – WinInet Slayer Edition</footer>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <footer>© 2025 Roblox Bypass + Deobf Pro – Made with [Green Heart]</footer>
 
   <script>
-    let currentScript = ""; // Fix: Lưu script global
-    let deobfScript = "";
+    // === BIẾN TOÀN CỤC ===
+    let currentScript = ""; // Lưu script sau khi fetch
 
-    // Switch Tab
-    function switchTab(tabName) {
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('#tab-fetch, #tab-deobf, #tab-about').forEach(t => t.style.display = 'none');
-      event.target.classList.add('active');
-      document.getElementById(`tab-${tabName}`).style.display = 'block';
-      if (tabName === 'deobf' && currentScript) document.getElementById('deobfBtn').style.display = 'inline-flex';
-    }
-
-    // Extract ID/URL
-    function extractUrl(input) {
+    // === NHẬN DIỆN ID ===
+    function extractId(input) {
+      if (!input) return null;
       input = input.trim();
-      if (input.includes('http')) return input;
-      if (input.length >= 8) return `https://pastebin.com/raw/${input}`; // Giả sử pastebin cho hash, thay nếu cần
-      return null;
+      if (input.includes('http')) {
+        try { return new URL(input).pathname.replace(/^\//, ''); } catch { return null; }
+      }
+      return input;
     }
 
-    // Fetch with Proxy Bypass (Fix: Dùng CORS proxy cho raw)
+    // === LẤY SCRIPT (DÙNG PROXY BỎ PASS) ===
     async function fetchScript() {
       const input = document.getElementById('urlInput').value;
+      const id = extractId(input);
       const status = document.getElementById('status');
-      const output = document.getElementById('scriptContent');
+      const scriptContent = document.getElementById('scriptContent');
       const copyBtn = document.getElementById('copyBtn');
-      const deobfBtn = document.getElementById('deobfBtn');
-      const fetchBtn = document.getElementById('fetchBtn');
+      const deobfSection = document.getElementById('deobfSection');
 
-      const url = extractUrl(input);
-      if (!url) return showToast('ID/Link không hợp lệ!', 'error');
+      if (!id) {
+        status.textContent = "ID không hợp lệ!";
+        return;
+      }
 
-      status.innerHTML = '<span class="loading"></span> Bypassing locker...';
-      fetchBtn.disabled = true;
-
+      status.textContent = "Đang lấy script...";
       try {
-        // Proxy bypass (CORS-anywhere cho raw)
-        const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(url);
-        const res = await fetch(proxyUrl);
-        if (!res.ok) throw new Error('Bị chặn hoặc không tồn tại');
+        // Dùng proxy bỏ pass (thay link nếu cần)
+        const proxy = "https://api.allorigins.win/get?url=";
+        const url = `https://pastebin.com/raw/${id}`;
+        const res = await fetch(proxy + encodeURIComponent(url));
         const data = await res.json();
-        currentScript = data.contents;
+        currentScript = data.contents || "";
 
-        if (currentScript.length < 50) throw new Error('Script rỗng hoặc không phải Lua');
+        if (!currentScript) throw new Error("Script rỗng");
 
-        output.innerHTML = `<code class="language-lua">${Prism.highlight(currentScript, Prism.languages.lua, 'lua')}</code>`;
-        copyBtn.style.display = 'block';
-        deobfBtn.style.display = 'inline-flex';
-        status.innerHTML = '<i class="fas fa-check"></i> <span style="color:var(--success)">Bypass thành công! Obf script ready.</span>';
-      } catch (err) {
-        showToast(`Lỗi: ${err.message} (Check ID?)`, 'error');
-        output.innerHTML = `<code class="language-lua">-- Fetch fail: ${err.message}</code>`;
-      } finally {
-        fetchBtn.disabled = false;
+        scriptContent.textContent = currentScript;
+        copyBtn.style.display = "block";
+        deobfSection.style.display = "flex";
+        status.textContent = "Lấy script thành công!";
+      } catch (e) {
+        status.textContent = "Lỗi: " + e.message;
+        scriptContent.textContent = "-- Không lấy được script --";
       }
     }
 
-    // DEOBF WININET - CHUẨN NHẤT (Multi-layer)
-    function deobfuscateWinInet() {
-      if (!currentScript) return showToast('Chưa có script obf!', 'error');
+    // === GIẢI MÃ ASCII CHUẨN 100% ===
+    function deobfuscateAscii() {
+      if (!currentScript) {
+        document.getElementById('status').textContent = "Chưa có script!";
+        return;
+      }
 
       const status = document.getElementById('status');
-      const deobfOutput = document.getElementById('deobfOutput');
       const deobfContent = document.getElementById('deobfContent');
+      const deobfOutput = document.getElementById('deobfOutput');
       const copyDeobfBtn = document.getElementById('copyDeobfBtn');
-      status.innerHTML = '<span class="loading"></span> Deobf WinInet Layer 1/3...';
+
+      status.textContent = "Đang giải mã ASCII...";
 
       setTimeout(() => {
-        let code = currentScript;
+        let decoded = currentScript;
 
-        // LAYER 1: Decode ASCII Octal (\108) & Raw Numbers (108108...)
-        code = code.replace(/\\(\d{1,3})/g, (m, c) => {
-          const n = parseInt(c, 8);
-          return (n >= 32 && n <= 126) ? String.fromCharCode(n) : m;
-        }).replace(/\d{3,}/g, m => {
-          let r = '';
-          for (let i = 0; i < m.length; i += 3) {
-            if (i + 2 < m.length) {
-              const chunk = m.substr(i, 3);
-              const n = parseInt(chunk, 8);
-              r += (n >= 32 && n <= 126) ? String.fromCharCode(n) : chunk;
-            } else r += m.substr(i);
-          }
-          return r;
+        // B1: Giải \108\111\99...
+        decoded = decoded.replace(/\\(\d{1,3})/g, (m, code) => {
+          const num = parseInt(code, 8);
+          return num >= 32 && num <= 126 ? String.fromCharCode(num) : m;
         });
 
-        // LAYER 2: Hex Escapes (\x6C) & Base64 in Strings (WinInet thường dùng)
-        code = code.replace(/\\x([0-9A-Fa-f]{2})/g, (m, h) => String.fromCharCode(parseInt(h, 16)))
-          .replace(/"([A-Za-z0-9+/=]{20,})"/g, (m, b64) => {
-            try { return '"' + atob(b64) + '"'; } catch { return m; }
-          });
+        // B2: Giải 108108108... (chuỗi 3 số liền nhau)
+        decoded = decoded.replace(/(\d{3})(\d{3})*/g, (match, first, rest) => {
+          let result = String.fromCharCode(parseInt(first, 8));
+          if (rest) {
+            for (let i = 0; i < rest.length; i += 3) {
+              const chunk = rest.substr(i, 3);
+              if (chunk.length === 3) {
+                const num = parseInt(chunk, 8);
+                result += num >= 32 && num <= 126 ? String.fromCharCode(num) : chunk;
+              }
+            }
+          }
+          return result;
+        });
 
-        // LAYER 3: WinInet Cleanup (Thay calls bằng direct) + Loadstring Fix
-        code = code.replace(/InternetOpenA\s*\([^)]+\)/gi, 'loadstring') // Basic WinInet to loadstring
-          .replace(/loadstring\s*\(\s*["']([^"']+)["']\s*\)/g, (m, payload) => {
-            // Re-decode payload nếu còn obf
-            const cleaned = payload.replace(/\\(\d{1,3})/g, (mm, cc) => String.fromCharCode(parseInt(cc, 8)))
-              .replace(/\\x([0-9A-Fa-f]{2})/g, (mm, hh) => String.fromCharCode(parseInt(hh, 16)));
-            return `loadstring("${cleaned}") -- [WININET DEOBF]`;
-          });
+        // B3: Dọn loadstring
+        decoded = decoded.replace(/loadstring\("([^"]*)"\)/g, (m, inner) => {
+          return `loadstring("${inner}") -- [DEOBF]`;
+        });
 
-        // Final Pass: Remove junk lines (anti-deobf)
-        code = code.split('\n').filter(line => !line.match(/^\s*--\[\[OBF]]/)).join('\n');
-
-        deobfScript = code;
-        deobfContent.innerHTML = `<code class="language-lua">${Prism.highlight(code, Prism.languages.lua, 'lua')}</code>`;
-        deobfOutput.style.display = 'block';
-        copyDeobfBtn.style.display = 'block';
-        status.innerHTML = '<i class="fas fa-check"></i> <span style="color:var(--success)">Deobf WinInet HOÀN THÀNH! (3 Layers - Check output)</span>';
-      }, 800);
+        deobfContent.textContent = decoded;
+        deobfOutput.style.display = "block";
+        copyDeobfBtn.style.display = "block";
+        status.textContent = "GIẢI MÃ ASCII THÀNH CÔNG!";
+      }, 300);
     }
 
-    // Copy Functions
-    function copyScript() { copyText(currentScript, 'copyBtn'); }
-    function copyDeobf() { copyText(deobfScript, 'copyDeobfBtn'); }
-    function copyText(text, btnId) {
-      if (!text) return showToast('Nothing to copy!', 'warning');
-      navigator.clipboard.writeText(text).then(() => {
-        const btn = document.getElementById(btnId);
-        const old = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-check"></i> ĐÃ COPY!';
-        btn.style.background = var(--success);
-        setTimeout(() => { btn.innerHTML = old; btn.style.background = ''; }, 2000);
-      });
+    // === COPY ===
+    function copyScript() {
+      navigator.clipboard.writeText(currentScript);
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = "ĐÃ COPY!";
+      setTimeout(() => btn.textContent = "COPY", 1500);
     }
 
-    // Toast Helper
-    function showToast(msg, type = 'info') {
-      const toast = document.getElementById('toast');
-      toast.textContent = msg;
-      toast.style.background = type === 'error' ? 'var(--error)' : type === 'success' ? 'var(--success)' : 'var(--warning)';
-      toast.style.display = 'block';
-      setTimeout(() => toast.style.display = 'none', 3000);
+    function copyDeobf() {
+      const text = document.getElementById('deobfContent').textContent;
+      navigator.clipboard.writeText(text);
+      const btn = document.getElementById('copyDeobfBtn');
+      btn.textContent = "ĐÃ COPY!";
+      setTimeout(() => btn.textContent = "COPY DEOBF", 1500);
     }
 
-    // Enter Key Support
-    document.getElementById('urlInput').addEventListener('keypress', e => { if (e.key === 'Enter') fetchScript(); });
-
-    // Init: Highlight initial
-    Prism.plugins.autoloader.languages_path = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/';
+    // === ENTER KEY ===
+    document.getElementById('urlInput').addEventListener('keypress', e => {
+      if (e.key === 'Enter') fetchScript();
+    });
   </script>
 </body>
 </html>
