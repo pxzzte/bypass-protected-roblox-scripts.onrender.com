@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🔓 ROBLOX BYPASS PRO</title>
+  <title>🔓 ROBLOX BYPASS + DEOBF PRO</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto+Mono&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #0a0a0a;
       --primary: #00ff88;
       --secondary: #00cc66;
+      --accent: #ff00ff;
       --text: #e0ffe0;
       --border: #00ff88;
       --shadow: 0 0 20px rgba(0, 255, 136, 0.5);
@@ -26,12 +27,7 @@
       padding: 20px;
       overflow-x: hidden;
     }
-    .container {
-      width: 100%;
-      max-width: 900px;
-      margin: 20px auto;
-      text-align: center;
-    }
+    .container { width: 100%; max-width: 900px; margin: 20px auto; text-align: center; }
     h1 {
       font-family: 'Orbitron', sans-serif;
       font-size: 2.8rem;
@@ -40,29 +36,13 @@
       margin-bottom: 10px;
       animation: pulse 2s infinite;
     }
-    .subtitle {
-      color: #88ffaa;
-      font-size: 1.1rem;
-      margin-bottom: 30px;
-    }
+    .subtitle { color: #88ffaa; font-size: 1.1rem; margin-bottom: 30px; }
     .input-group {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
+      display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center;
     }
     input[type="text"] {
-      flex: 1;
-      min-width: 280px;
-      padding: 14px 18px;
-      background: #111;
-      border: 2px solid var(--border);
-      border-radius: 12px;
-      color: var(--primary);
-      font-size: 1rem;
-      outline: none;
-      transition: all 0.3s;
+      flex: 1; min-width: 280px; padding: 14px 18px; background: #111; border: 2px solid var(--border);
+      border-radius: 12px; color: var(--primary); font-size: 1rem; outline: none; transition: all 0.3s;
       box-shadow: var(--shadow);
     }
     input[type="text"]:focus {
@@ -70,68 +50,34 @@
       box-shadow: 0 0 25px rgba(0, 255, 136, 0.8);
     }
     button {
-      padding: 14px 30px;
-      background: var(--primary);
-      color: #000;
-      border: none;
-      border-radius: 12px;
-      font-weight: bold;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s;
-      box-shadow: var(--shadow);
+      padding: 14px 30px; background: var(--primary); color: #000; border: none; border-radius: 12px;
+      font-weight: bold; font-size: 1rem; cursor: pointer; transition: all 0.3s; box-shadow: var(--shadow);
       min-width: 140px;
     }
     button:hover {
-      background: var(--secondary);
-      transform: translateY(-3px);
-      box-shadow: 0 0 30px rgba(0, 255, 136, 0.9);
+      background: var(--secondary); transform: translateY(-3px); box-shadow: 0 0 30px rgba(0, 255, 136, 0.9);
+    }
+    .btn-deobf {
+      background: var(--accent); color: #fff;
+    }
+    .btn-deobf:hover {
+      background: #cc00cc; box-shadow: 0 0 30px rgba(255, 0, 255, 0.7);
     }
     .output {
-      background: #111;
-      border: 2px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
-      margin-top: 20px;
-      min-height: 200px;
-      text-align: left;
-      position: relative;
-      box-shadow: var(--shadow);
-      overflow: auto;
-      max-height: 60vh;
+      background: #111; border: 2px solid var(--border); border-radius: 12px; padding: 20px;
+      margin-top: 20px; min-height: 200px; text-align: left; position: relative; box-shadow: var(--shadow);
+      overflow: auto; max-height: 60vh;
     }
     pre {
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      color: var(--text);
-      font-size: 0.95rem;
-      line-height: 1.5;
+      white-space: pre-wrap; word-wrap: break-word; color: var(--text); font-size: 0.95rem; line-height: 1.5;
     }
     .copy-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      padding: 8px 16px;
-      font-size: 0.9rem;
-      background: var(--primary);
-      color: #000;
+      position: absolute; top: 10px; right: 10px; padding: 8px 16px; font-size: 0.9rem;
+      background: var(--primary); color: #000;
     }
-    .status {
-      margin-top: 15px;
-      font-weight: bold;
-      color: #ff0;
-      min-height: 24px;
-    }
-    footer {
-      margin-top: auto;
-      padding: 20px;
-      color: #666;
-      font-size: 0.9rem;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.8; }
-    }
+    .status { margin-top: 15px; font-weight: bold; color: #ff0; min-height: 24px; }
+    footer { margin-top: auto; padding: 20px; color: #666; font-size: 0.9rem; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; } }
     @media (max-width: 600px) {
       h1 { font-size: 2rem; }
       .input-group { flex-direction: column; }
@@ -141,41 +87,41 @@
 </head>
 <body>
   <div class="container">
-    <h1>🔓 ROBLOX BYPASS PRO</h1>
-    <p class="subtitle">Nhập ID hoặc link → Lấy script thật → Copy 1 click</p>
+    <h1>🔓 ROBLOX BYPASS + DEOBF</h1>
+    <p class="subtitle">Bỏ mật khẩu → Lấy script → Giải mã ASCII → Copy 1 click</p>
 
     <div class="input-group">
-      <input type="text" id="urlInput" placeholder="Ví dụ: 68628fd8... hoặc https://protected-roblox-scripts.onrender.com/access/..." />
+      <input type="text" id="urlInput" placeholder="ID hoặc link (ví dụ: 68628fd8...)" />
       <button onclick="fetchScript()">🚀 LẤY SCRIPT</button>
     </div>
 
     <div class="output" id="output">
-      <pre id="scriptContent">Nhập ID hoặc link → nhấn "LẤY SCRIPT"...</pre>
+      <pre id="scriptContent">Nhập ID → nhấn "LẤY SCRIPT"...</pre>
       <button class="copy-btn" id="copyBtn" onclick="copyScript()" style="display:none">📋 COPY</button>
+    </div>
+
+    <div class="input-group" style="margin-top:10px; display:none;" id="deobfSection">
+      <button class="btn-deobf" onclick="deobfuscateAscii()">⚡ DEOBFUSCATE ASCII</button>
+    </div>
+
+    <div class="output" id="deobfOutput" style="display:none; margin-top:20px;">
+      <pre id="deobfContent">...</pre>
+      <button class="copy-btn" id="copyDeobfBtn" onclick="copyDeobf()" style="display:none">📋 COPY DEOBF</button>
     </div>
 
     <div class="status" id="status"></div>
   </div>
 
-  <footer>© 2025 Roblox Bypass Pro – Made with 💚</footer>
+  <footer>© 2025 Roblox Bypass + Deobf Pro – Made with 💚</footer>
 
   <script>
-    // === TỰ ĐỘNG NHẬN DIỆN ID TỪ LINK HOẶC ID TRỰC TIẾP ===
+    // === NHẬN DIỆN ID ===
     function extractId(input) {
       if (!input) return null;
       input = input.trim();
-
-      // Nếu là link đầy đủ → trích xuất path
       if (input.includes('http')) {
-        try {
-          const url = new URL(input);
-          return url.pathname.replace(/^\//, ''); // bỏ dấu / đầu
-        } catch {
-          return null;
-        }
+        try { return new URL(input).pathname.replace(/^\//, ''); } catch { return null; }
       }
-
-      // Nếu là ID trực tiếp → trả về luôn
       return input;
     }
 
@@ -183,49 +129,85 @@
     async function fetchScript() {
       const rawInput = document.getElementById('urlInput').value;
       const id = extractId(rawInput);
-
       const status = document.getElementById('status');
       const output = document.getElementById('scriptContent');
       const copyBtn = document.getElementById('copyBtn');
+      const deobfSection = document.getElementById('deobfSection');
 
       if (!id) {
-        status.innerHTML = "🔴 Nhập ID hoặc link hợp lệ!";
-        output.textContent = "Ví dụ: 68628fd8... hoặc access/0507...";
-        copyBtn.style.display = "none";
+        status.innerHTML = "🔴 Nhập ID hợp lệ!";
         return;
       }
 
-      const api = `/.netlify/functions/proxy/${id}`;
-      status.innerHTML = "⏳ Đang lấy script từ: <code>" + id + "</code>...";
+      status.innerHTML = "⏳ Đang lấy...";
       output.textContent = "Loading...";
       copyBtn.style.display = "none";
+      deobfSection.style.display = "none";
 
       try {
-        const res = await fetch(api);
+        const res = await fetch(`/.netlify/functions/proxy/${id}`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const text = await res.text();
 
         output.textContent = text;
         window.currentScript = text;
         copyBtn.style.display = "block";
-        status.innerHTML = `✅ <strong>THÀNH CÔNG!</strong> Đã lấy từ: <code>${id}</code>`;
+        deobfSection.style.display = "flex";
+        status.innerHTML = `✅ Đã lấy script từ: <code>${id}</code>`;
       } catch (err) {
-        output.textContent = "Không lấy được script.";
-        status.innerHTML = `🔴 Lỗi: ${err.message}. Kiểm tra ID/link!`;
+        output.textContent = "Lỗi lấy script.";
+        status.innerHTML = `🔴 Lỗi: ${err.message}`;
       }
+    }
+
+    // === GIẢI MÃ ASCII (\108\111\99...) ===
+    function deobfuscateAscii() {
+      const script = window.currentScript || "";
+      const deobfOutput = document.getElementById('deobfOutput');
+      const deobfContent = document.getElementById('deobfContent');
+      const copyDeobfBtn = document.getElementById('copyDeobfBtn');
+      const status = document.getElementById('status');
+
+      // Tìm tất cả chuỗi \xxx
+      const asciiRegex = /"\\(\d{3})\\(\d{3})[^"]*"/g;
+      let decoded = script;
+
+      const matches = script.match(asciiRegex);
+      if (!matches || matches.length === 0) {
+        deobfContent.textContent = "Không tìm thấy chuỗi ASCII để giải mã.";
+        copyDeobfBtn.style.display = "none";
+        deobfOutput.style.display = "block";
+        return;
+      }
+
+      // Giải mã từng chuỗi
+      decoded = script.replace(asciiRegex, (match) => {
+        return match.replace(/\\(\d{3})/g, (m, code) => String.fromCharCode(parseInt(code, 8)));
+      });
+
+      deobfContent.textContent = decoded;
+      window.deobfScript = decoded;
+      copyDeobfBtn.style.display = "block";
+      deobfOutput.style.display = "block";
+      status.innerHTML = "⚡ Đã giải mã ASCII thành công!";
     }
 
     function copyScript() {
       navigator.clipboard.writeText(window.currentScript || "");
-      alert("✅ ĐÃ COPY TOÀN BỘ SCRIPT!");
+      alert("✅ ĐÃ COPY SCRIPT GỐC!");
     }
 
-    // === NHẤN ENTER TRONG TEXTBOX → TỰ ĐỘNG LẤY ===
+    function copyDeobf() {
+      navigator.clipboard.writeText(window.deobfScript || "");
+      alert("✅ ĐÃ COPY SCRIPT ĐÃ GIẢI MÃ!");
+    }
+
+    // === NHẤN ENTER ===
     document.getElementById('urlInput').addEventListener('keypress', (e) => {
       if (e.key === 'Enter') fetchScript();
     });
 
-    // === TỰ ĐỘNG LOAD KHI MỞ TRANG (nếu có ?id= trong URL) ===
+    // === TỰ ĐỘNG LOAD KHI MỞ TRANG ===
     window.addEventListener('load', () => {
       const urlParams = new URLSearchParams(window.location.search);
       const urlId = urlParams.get('id');
